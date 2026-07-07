@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Material</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1>📦 Información del Material</h1>
+
+</header>
+
+<div class="contenedor">
+
+<div class="card">
+
+<h2 id="nombre"></h2>
+
+<p><b>Código:</b> <span id="codigo"></span></p>
+
+<p><b>Existencias:</b> <span id="cantidad"></span></p>
+
+<p><b>Ubicación:</b> <span id="ubicacion"></span></p>
+
+<p><b>Descripción:</b></p>
+
+<p id="descripcion"></p>
+
+<p><b>Stock mínimo:</b> <span id="minimo"></span></p>
+
+<hr>
+
+<h3>Modificar Inventario</h3>
+
+<div class="inventario">
+
+<button id="menos">−</button>
+
+<h1 id="cantidadNueva">0</h1>
+
+<button id="mas">+</button>
+
+</div>
+
+<br>
+
+<button id="guardar" class="btnGuardar">
+
+💾 Guardar Movimiento
+
+</button>
+
+<br><br>
+
+<button id="editar">
+
+✏️ Editar Material
+
+</button>
+
+<br><br>
+
+<button id="generarQR">
+
+📱 Generar QR
+
+</button>
+
+<br><br>
+
+<button onclick="history.back()">
+
+← Regresar
+
+</button>
+
+</div>
+
+</div>
+
+<!--================ MODAL MOVIMIENTO =================-->
+
+<div id="modalMovimiento" class="modal">
+
+<div class="modalContenido">
+
+<h2>Registrar Movimiento</h2>
+
+<label>Nombre del responsable</label>
+
+<input
+type="text"
+id="responsable"
+placeholder="Ej. Eduardo Salas">
+
+<br><br>
+
+<label>Área / Empresa</label>
+
+<input
+type="text"
+id="empresa"
+placeholder="Ej. Energías o Schneider Electric">
+
+<br><br>
+
+<div class="botonesModal">
+
+<button id="cancelarModal">
+
+Cancelar
+
+</button>
+
+<button id="confirmarMovimiento">
+
+Guardar
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!--================ MODAL QR =================-->
+
+<div id="modalQR" class="modal">
+
+<div class="modalContenido">
+
+<h2>📱 Código QR</h2>
+
+<div id="contenedorQR" style="text-align:center;"></div>
+
+<br>
+
+<button id="cerrarQR" class="btnGuardar">
+
+Cerrar
+
+</button>
+
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script src="js/config.js"></script>
+
+<script src="js/material.js"></script>
+
+</body>
+
+</html>

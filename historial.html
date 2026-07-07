@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Historial de Movimientos</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1>📋 Historial de Movimientos</h1>
+
+</header>
+
+<div class="contenedor">
+
+<input
+type="text"
+id="buscarMovimiento"
+placeholder="🔍 Buscar material, responsable o empresa...">
+
+<br><br>
+
+<table id="tablaHistorial">
+
+<thead>
+
+<tr>
+
+<th>Fecha</th>
+
+<th>Material</th>
+
+<th>Movimiento</th>
+
+<th>Cantidad</th>
+
+<th>Responsable</th>
+
+<th>Área / Empresa</th>
+
+</tr>
+
+</thead>
+
+<tbody id="cuerpoHistorial">
+
+</tbody>
+
+</table>
+
+<br>
+
+<button class="btnGuardar" onclick="location.href='index.html'">
+
+🏠 Regresar al Inicio
+
+</button>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/config.js"></script>
+
+<script src="js/historial.js"></script>
+
+</body>
+
+</html>
