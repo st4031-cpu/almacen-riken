@@ -1,10 +1,17 @@
+//=====================
+// OBTENER ID DEL MATERIAL
+//=====================
+
 const parametros = new URLSearchParams(window.location.search);
 const id = parametros.get("id");
+
+//=====================
+// VARIABLES
+//=====================
 
 let cantidadOriginal = 0;
 let cantidadActual = 0;
 let nombreMaterial = "";
-
 //=====================
 // CARGAR MATERIAL
 //=====================
@@ -19,10 +26,14 @@ async function cargarMaterial() {
 
     if (error) {
         console.error(error);
+        alert("No se pudo cargar el material.");
         return;
     }
 
     nombreMaterial = data.nombre;
+
+    cantidadOriginal = data.cantidad;
+    cantidadActual = data.cantidad;
 
     document.getElementById("nombre").textContent = data.nombre;
     document.getElementById("codigo").textContent = data.codigo;
@@ -32,12 +43,9 @@ async function cargarMaterial() {
     document.getElementById("descripcion").textContent = data.descripcion;
     document.getElementById("minimo").textContent = data.minimo;
 
-    cantidadOriginal = data.cantidad;
-    cantidadActual = data.cantidad;
 }
 
 cargarMaterial();
-
 //=====================
 // BOTONES + Y -
 //=====================
@@ -61,21 +69,23 @@ document.getElementById("menos").onclick = () => {
     }
 
 };
-
 //=====================
-// MODAL
+// MODAL MOVIMIENTO
 //=====================
 
 const modal = document.getElementById("modalMovimiento");
 
 document.getElementById("guardar").onclick = () => {
 
-    if (cantidadActual == cantidadOriginal) {
+    if (cantidadActual === cantidadOriginal) {
 
         alert("No hubo cambios en el inventario.");
         return;
 
     }
+
+    document.getElementById("responsable").value = "";
+    document.getElementById("empresa").value = "";
 
     modal.style.display = "flex";
 
@@ -86,7 +96,6 @@ document.getElementById("cancelarModal").onclick = () => {
     modal.style.display = "none";
 
 };
-
 //=====================
 // GUARDAR MOVIMIENTO
 //=====================
@@ -103,28 +112,31 @@ document.getElementById("confirmarMovimiento").onclick = async () => {
         .value
         .trim();
 
-    if (responsable == "") {
+    if (responsable === "") {
 
         alert("Escribe el nombre del responsable.");
+
         return;
 
     }
 
-    if (empresa == "") {
+    if (empresa === "") {
 
         alert("Escribe el Área o Empresa.");
+
         return;
 
     }
-
-    //-----------------------------------
-    // ACTUALIZAR INVENTARIO
-    //-----------------------------------
 
     const boton = document.getElementById("confirmarMovimiento");
 
     boton.disabled = true;
+
     boton.textContent = "Guardando...";
+
+    //-----------------------------------
+    // ACTUALIZAR INVENTARIO
+    //-----------------------------------
 
     const { error } = await supabaseClient
 
@@ -142,9 +154,10 @@ document.getElementById("confirmarMovimiento").onclick = async () => {
 
         console.error(error);
 
-        alert("Error al actualizar.");
+        alert("No se pudo actualizar el inventario.");
 
         boton.disabled = false;
+
         boton.textContent = "Guardar";
 
         return;
@@ -156,16 +169,19 @@ document.getElementById("confirmarMovimiento").onclick = async () => {
     //-----------------------------------
 
     let tipo = "";
+
     let piezas = 0;
 
     if (cantidadActual > cantidadOriginal) {
 
         tipo = "Entrada";
+
         piezas = cantidadActual - cantidadOriginal;
 
     } else {
 
         tipo = "Salida";
+
         piezas = cantidadOriginal - cantidadActual;
 
     }
@@ -201,6 +217,7 @@ document.getElementById("confirmarMovimiento").onclick = async () => {
         alert("No se pudo guardar el historial.");
 
         boton.disabled = false;
+
         boton.textContent = "Guardar";
 
         return;
@@ -214,20 +231,22 @@ document.getElementById("confirmarMovimiento").onclick = async () => {
     cantidadOriginal = cantidadActual;
 
     document.getElementById("cantidad").textContent = cantidadActual;
-    document.getElementById("cantidadNueva").textContent = cantidadActual;
 
-    document.getElementById("responsable").value = "";
-    document.getElementById("empresa").value = "";
+    document.getElementById("cantidadNueva").textContent = cantidadActual;
 
     modal.style.display = "none";
 
+    document.getElementById("responsable").value = "";
+
+    document.getElementById("empresa").value = "";
+
     boton.disabled = false;
+
     boton.textContent = "Guardar";
 
     alert("Movimiento registrado correctamente.");
 
 };
-
 //=====================
 // EDITAR MATERIAL
 //=====================
@@ -237,6 +256,7 @@ document.getElementById("editar").onclick = () => {
     location.href = "editar.html?id=" + id;
 
 };
+
 //=====================
 // GENERAR QR
 //=====================
@@ -247,21 +267,48 @@ const contenedorQR = document.getElementById("contenedorQR");
 
 document.getElementById("generarQR").onclick = () => {
 
+    // Limpiar contenido anterior
     contenedorQR.innerHTML = "";
 
-    new QRCode(contenedorQR,{
+    // URL pública del material
+    const urlQR = "https://st4031-cpu.github.io/almacen-riken/material.html?id=" + id;
 
-        text: window.location.href,
+    // Crear contenedor
+    const divQR = document.createElement("div");
 
-        width:250,
+    divQR.id = "codigoQR";
 
-        height:250
+    contenedorQR.appendChild(divQR);
+
+    // Nombre del material
+    const titulo = document.createElement("h3");
+
+    titulo.textContent = nombreMaterial;
+
+    titulo.style.marginTop = "20px";
+
+    titulo.style.textAlign = "center";
+
+    contenedorQR.appendChild(titulo);
+
+    // Generar QR
+    new QRCode(divQR, {
+
+        text: urlQR,
+
+        width: 250,
+
+        height: 250
 
     });
 
     modalQR.style.display = "flex";
 
 };
+
+//=====================
+// CERRAR QR
+//=====================
 
 document.getElementById("cerrarQR").onclick = () => {
 
