@@ -318,6 +318,23 @@ document.getElementById("verHistorial").onclick = () => {
 cargarDashboard();
 
 cargarMovimientosHoy();
+//=====================
+// BOTONES PRINCIPALES
+//=====================
+
+// Agregar material
+document.getElementById("nuevoMaterial").onclick = () => {
+
+    location.href = "nuevo.html";
+
+};
+
+// Ver historial
+document.getElementById("verHistorial").onclick = () => {
+
+    location.href = "historial.html";
+
+};
 //====================================
 // EXPORTAR INVENTARIO A EXCEL
 //====================================
