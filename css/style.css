@@ -10,12 +10,60 @@ body{
 }
 
 header{
+
     background:#005BAC;
+
     color:white;
-    padding:20px;
-    text-align:center;
+
+    padding:15px 30px;
+
     box-shadow:0 2px 8px rgba(0,0,0,.2);
+
 }
+.headerLogo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:25px;
+
+}
+
+.logoEmpresa{
+
+    width:180px;
+
+    height:auto;
+
+    background:white;
+
+    border-radius:10px;
+
+    padding:6px;
+
+}
+
+.headerLogo h1{
+
+    margin:0;
+
+    font-size:32px;
+
+}
+
+.headerLogo p{
+
+    margin-top:8px;
+
+    font-size:18px;
+
+    color:#B8F5B1;
+
+    font-weight:bold;
+
+}
+
 
 .contenedor{
     width:95%;
