@@ -859,6 +859,38 @@ MATERIALES POR REPONER
 
 .btnVerMaterial:hover{
 
+
     background:#0d47a1;
+
+}
+/*====================================
+        COLORES BOTONES
+====================================*/
+
+button#nuevoRack{
+
+    background:#2E7D32;
+
+    color:white;
+
+}
+
+button#nuevoRack:hover{
+
+    background:#1B5E20;
+
+}
+
+button#verHistorial{
+
+    background:#F57C00;
+
+    color:white;
+
+}
+
+button#verHistorial:hover{
+
+    background:#E65100;
 
 }
