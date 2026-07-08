@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Acceso al Sistema</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<header class="headerLogo">
+
+<img
+src="img/logo-riken-energias.png"
+class="logoEmpresa">
+
+<div>
+
+<h1>Control de Inventario QR</h1>
+
+<p>Área de Energías</p>
+
+</div>
+
+</header>
+
+<div class="contenedor">
+
+<div class="card" style="max-width:450px;margin:auto;">
+
+<h2 style="text-align:center;">🔒 Iniciar Sesión</h2>
+
+<br>
+
+<label>Contraseña</label>
+
+<input
+type="password"
+id="password"
+placeholder="Ingrese la contraseña">
+
+<br><br>
+
+<button id="entrar">
+
+Entrar
+
+</button>
+
+</div>
+
+</div>
+
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- Configuración -->
+<script src="js/config.js"></script>
+
+<!-- Login -->
+<script src="js/login.js"></script>
+
+</body>
+
+</html>

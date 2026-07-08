@@ -271,7 +271,8 @@ document.getElementById("generarQR").onclick = () => {
     contenedorQR.innerHTML = "";
 
     // URL pública del material
-    const urlQR = "https://st4031-cpu.github.io/almacen-riken/material.html?id=" + id;
+
+   const urlQR = "https://st4031-cpu.github.io/almacen-riken/material.html?id=" + id + "&modo=operador";
 
     // Crear contenedor
     const divQR = document.createElement("div");
@@ -315,3 +316,88 @@ document.getElementById("cerrarQR").onclick = () => {
     modalQR.style.display = "none";
 
 };
+//=====================
+// MODO ADMIN / OPERADOR
+//=====================
+
+
+const botonEditar = document.getElementById("editar");
+const botonBuscar = document.getElementById("buscarOtroMaterial");
+
+if (modo === "admin") {
+
+    botonBuscar.innerHTML = "🏠 Inicio";
+
+    botonBuscar.onclick = () => {
+
+        location.href = "index.html";
+
+    };
+
+} else {
+
+    if (botonEditar){
+
+        botonEditar.style.display = "none";
+
+    }
+
+    botonBuscar.innerHTML = "🔍 Buscar otro material";
+
+    botonBuscar.onclick = () => {
+
+        location.href = "buscar.html";
+
+    };
+
+}
+//=====================
+// MODO ADMIN / OPERADOR
+//=====================
+
+// Revisar si viene desde un QR
+const parametrosModo = new URLSearchParams(window.location.search);
+
+const modo = parametrosModo.get("modo");
+
+const botonEditar = document.getElementById("editar");
+const botonBuscar = document.getElementById("buscarOtroMaterial");
+const botonQR = document.getElementById("generarQR");
+
+//----------------------
+// OPERADOR
+//----------------------
+
+if (modo === "operador") {
+
+    if (botonEditar)
+        botonEditar.style.display = "none";
+
+    if (botonQR)
+        botonQR.style.display = "none";
+
+    botonBuscar.innerHTML = "🔍 Buscar otro material";
+
+    botonBuscar.onclick = () => {
+
+        location.href = "buscar.html";
+
+    };
+
+}
+
+//----------------------
+// ADMINISTRADOR
+//----------------------
+
+else{
+
+    botonBuscar.innerHTML = "🏠 Inicio";
+
+    botonBuscar.onclick = () => {
+
+        location.href = "index.html";
+
+    };
+
+}
