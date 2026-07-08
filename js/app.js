@@ -77,7 +77,7 @@ if (stockBajo.length === 0) {
 
     listaStock.innerHTML += `
 
-    <div class="stockCard">
+    <div class="stockCard" style="border-left-color:${obtenerColor(material.color)};">
 
         <div class="stockTitulo">
 
@@ -712,5 +712,33 @@ async function eliminarRack(id) {
     }
 
     cargarDashboard();
+
+}
+function obtenerColor(color){
+
+    switch(color){
+
+        case "azul":
+            return "#1565c0";
+
+        case "verde":
+            return "#2ecc71";
+
+        case "rojo":
+            return "#e74c3c";
+
+        case "amarillo":
+            return "#f1c40f";
+
+        case "morado":
+            return "#8e44ad";
+
+        case "gris":
+            return "#7f8c8d";
+
+        default:
+            return "#1565c0";
+
+    }
 
 }
