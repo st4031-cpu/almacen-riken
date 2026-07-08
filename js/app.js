@@ -57,63 +57,8 @@ async function cargarDashboard() {
 
     document.getElementById("stockBajo").textContent =
         stockBajo.length;
-    //-------------------------
-// LISTA STOCK BAJO
-//-------------------------
 
-const listaStock = document.getElementById("listaStockBajo");
-
-listaStock.innerHTML = "";
-
-if (stockBajo.length === 0) {
-
-    listaStock.innerHTML = "<p>✅ Todo el inventario está correcto.</p>";
-
-} else {
-
-    stockBajo.forEach(material => {
-
-    const rack = racks.find(r => r.id === material.rack_id);
-
-    listaStock.innerHTML += `
-
-    <div class="stockCard" style="border-left-color:${obtenerColor(material.color)};">
-
-        <div class="stockTitulo">
-
-            ${material.nombre}
-
-        </div>
-
-        <div class="stockInfo">
-
-            📁 <b>Rack:</b> ${rack ? rack.nombre : "Sin rack"}
-
-            <br>
-
-            📦 <b>Existencias:</b> ${material.cantidad}
-
-            <br>
-
-            ⚠ <b>Stock mínimo:</b> ${material.minimo}
-
-        </div>
-
-        <button
-            class="btnVerMaterial"
-            onclick="location.href='material.html?id=${material.id}'">
-
-            👁 Ver material
-
-        </button>
-
-    </div>
-
-    `;
-
-});
-}
-
+        
     //-------------------------
     // LISTA RACKS
     //-------------------------
