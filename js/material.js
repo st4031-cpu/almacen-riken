@@ -316,65 +316,47 @@ document.getElementById("cerrarQR").onclick = () => {
     modalQR.style.display = "none";
 
 };
+
 //=====================
-// MODO ADMIN / OPERADOR
+// PERMISOS
 //=====================
 
+const sesion = sessionStorage.getItem("sesion");
+const modoOperador = new URLSearchParams(window.location.search).get("modo");
 
 const botonEditar = document.getElementById("editar");
-const botonBuscar = document.getElementById("buscarOtroMaterial");
-
-if (modo === "admin") {
-
-    botonBuscar.innerHTML = "🏠 Inicio";
-
-    botonBuscar.onclick = () => {
-
-        location.href = "index.html";
-
-    };
-
-} else {
-
-    if (botonEditar){
-
-        botonEditar.style.display = "none";
-
-    }
-
-    botonBuscar.innerHTML = "🔍 Buscar otro material";
-
-    botonBuscar.onclick = () => {
-
-        location.href = "buscar.html";
-
-    };
-
-}
-//=====================
-// MODO ADMIN / OPERADOR
-//=====================
-
-// Revisar si viene desde un QR
-const parametrosModo = new URLSearchParams(window.location.search);
-
-const modo = parametrosModo.get("modo");
-
-const botonEditar = document.getElementById("editar");
-const botonBuscar = document.getElementById("buscarOtroMaterial");
 const botonQR = document.getElementById("generarQR");
+const botonBuscar = document.getElementById("buscarOtroMaterial");
 
-//----------------------
+//=====================
+// ADMINISTRADOR
+//=====================
+
+if (sesion === "activa") {
+
+    botonEditar.style.display = "";
+
+    botonQR.style.display = "";
+
+    botonBuscar.innerHTML = "🏠 Inicio";
+
+    botonBuscar.onclick = () => {
+
+        location.href = "index.html";
+
+    };
+
+}
+
+//=====================
 // OPERADOR
-//----------------------
+//=====================
 
-if (modo === "operador") {
+else if (modoOperador === "operador") {
 
-    if (botonEditar)
-        botonEditar.style.display = "none";
+    botonEditar.style.display = "none";
 
-    if (botonQR)
-        botonQR.style.display = "none";
+    botonQR.style.display = "none";
 
     botonBuscar.innerHTML = "🔍 Buscar otro material";
 
@@ -386,18 +368,12 @@ if (modo === "operador") {
 
 }
 
-//----------------------
-// ADMINISTRADOR
-//----------------------
+//=====================
+// SIN PERMISOS
+//=====================
 
-else{
+else {
 
-    botonBuscar.innerHTML = "🏠 Inicio";
-
-    botonBuscar.onclick = () => {
-
-        location.href = "index.html";
-
-    };
+    location.href = "login.html";
 
 }

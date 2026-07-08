@@ -1,5 +1,5 @@
-if(sessionStorage.getItem("sesion")!=="activa"){
+if(sessionStorage.getItem("sesion") !== "activa"){
 
-    location.href="login.html";
+    location.href = "login.html";
 
 }

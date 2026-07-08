@@ -1,6 +1,6 @@
 document.getElementById("entrar").onclick = async () => {
 
-    const password = document.getElementById("password").value;
+    const password = document.getElementById("password").value.trim();
 
     const { data, error } = await supabaseClient
 
@@ -9,20 +9,27 @@ document.getElementById("entrar").onclick = async () => {
         .select("valor")
 
         .eq("clave", "password")
-
-        .single();
+        .limit(1);
 
     if (error) {
 
-        alert("Error al verificar la contraseña.");
-
         console.error(error);
+
+        alert("No se pudo verificar la contraseña.");
 
         return;
 
     }
 
-    if (password !== data.valor) {
+    if (!data || data.length === 0) {
+
+        alert("No existe una contraseña configurada.");
+
+        return;
+
+    }
+
+    if (password !== data[0].valor) {
 
         alert("Contraseña incorrecta.");
 
@@ -31,8 +38,6 @@ document.getElementById("entrar").onclick = async () => {
     }
 
     sessionStorage.setItem("sesion", "activa");
-
-    sessionStorage.setItem("modo", "admin");
 
     location.href = "index.html";
 

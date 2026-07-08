@@ -50,9 +50,9 @@ function mostrarMateriales(lista) {
 
             <p><b>Existencias:</b> ${material.cantidad}</p>
 
-            location.href='material.html?id=${material.id}&modo=operador'
+            <button onclick="location.href='material.html?id=${material.id}&modo=operador'">
 
-                Ver Material
+                👁 Ver Material
 
             </button>
 
