@@ -342,7 +342,7 @@ if (sesion === "activa") {
 
     botonBuscar.onclick = () => {
 
-        location.href = "index.html";
+        location.href = "panel.html";
 
     };
 

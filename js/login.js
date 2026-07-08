@@ -39,7 +39,7 @@ document.getElementById("entrar").onclick = async () => {
 
     sessionStorage.setItem("sesion", "activa");
 
-    location.href = "index.html";
+    location.href = "panel.html";
 
 };
 

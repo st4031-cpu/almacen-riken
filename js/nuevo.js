@@ -126,6 +126,6 @@ document.getElementById("guardar").onclick = async () => {
 
 document.getElementById("cancelar").onclick = () => {
 
-    location.href = "index.html";
+    location.href = "panel.html";
 
 };

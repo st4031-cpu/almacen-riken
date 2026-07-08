@@ -7,11 +7,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Control de Inventario QR</title>
-
+<title>Acceso al Sistema</title>
 
 <link rel="stylesheet" href="css/style.css">
-
 
 </head>
 
@@ -35,114 +33,39 @@ class="logoEmpresa">
 
 <div class="contenedor">
 
-<!--================ DASHBOARD =================-->
+<div class="card" style="max-width:450px;margin:auto;">
 
-<div class="dashboard">
-
-<div class="dashboardCard">
-
-<h2 id="totalMateriales">0</h2>
-
-<p>📦 Materiales</p>
-
-</div>
-
-<div class="dashboardCard">
-
-<h2 id="entradasHoy">0</h2>
-
-<p>📥 Entradas</p>
-
-</div>
-
-<div class="dashboardCard">
-
-<h2 id="salidasHoy">0</h2>
-
-<p>📤 Salidas</p>
-
-</div>
-
-<div class="dashboardCard alerta">
-
-<h2 id="stockBajo">0</h2>
-
-<p>⚠ Stock Bajo</p>
-
-</div>
-
-</div>
-
-<!--================ BOTONES =================-->
-
-<div class="botonesAcciones">
-
-<button id="nuevoRack">
-
-📁 Nuevo Rack
-
-</button>
-
-<button id="verHistorial">
-
-📋 Historial
-
-</button>
-
-<button id="excelInventario">
-
-📊 Inventario
-
-</button>
-
-<button id="excelMovimientos">
-
-📑 Historial Excel
-
-</button>
-
-</div>
-
-<!--================ BUSCADOR =================-->
-
-<input
-
-type="text"
-
-id="buscarRack"
-
-placeholder="🔍 Buscar Rack...">
-
-<br><br>
-<div class="card">
-
-    <h2>⚠ Materiales por reponer</h2>
-
-    <div id="listaStockBajo">
-
-        <p>Todo el inventario está correcto.</p>
-
-    </div>
-
-</div>
+<h2 style="text-align:center;">🔒 Iniciar Sesión</h2>
 
 <br>
-<!--================ LISTA DE RACKS =================-->
 
-<div id="listaRacks"></div>
+<label>Contraseña</label>
+
+<input
+type="password"
+id="password"
+placeholder="Ingrese la contraseña">
+
+<br><br>
+
+<button id="entrar">
+
+Entrar
+
+</button>
 
 </div>
 
+</div>
+
+<!-- Supabase -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
-<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
-
+<!-- Configuración -->
 <script src="js/config.js"></script>
 
-<script src="js/proteger.js"></script>
-
-<script src="js/app.js"></script>
+<!-- Login -->
+<script src="js/login.js"></script>
 
 </body>
 
