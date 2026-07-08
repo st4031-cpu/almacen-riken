@@ -186,11 +186,14 @@ async function cargarMovimientosHoy() {
 
     const hoy = new Date();
 
-    const inicio =
-        hoy.toISOString().substring(0,10) + "T00:00:00";
+const fecha =
+    hoy.getFullYear() + "-" +
+    String(hoy.getMonth() + 1).padStart(2, "0") + "-" +
+    String(hoy.getDate()).padStart(2, "0");
 
-    const fin =
-        hoy.toISOString().substring(0,10) + "T23:59:59";
+const inicio = fecha + "T00:00:00";
+
+const fin = fecha + "T23:59:59";
 
     const { data, error } = await supabaseClient
 
