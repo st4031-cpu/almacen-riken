@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Rack</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<header class="headerLogo">
+
+<img
+src="img/logo-riken-energias.png"
+class="logoEmpresa">
+
+<div>
+
+<h1 id="nombreRack">
+
+Rack
+
+</h1>
+
+<p>Área de Energías</p>
+
+</div>
+
+</header>
+
+<div class="contenedor">
+
+<div class="botonesAcciones">
+
+<button id="nuevoMaterial">
+
+➕ Agregar Material
+
+</button>
+
+<button onclick="history.back()">
+
+← Regresar
+
+</button>
+
+</div>
+
+<div id="listaMateriales"></div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/config.js"></script>
+
+<script src="js/rack.js"></script>
+
+</body>
+
+</html>

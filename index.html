@@ -7,7 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>RIKEN ALMACÉN</title>
+<title>Control de Inventario QR</title>
 
 <link rel="stylesheet" href="css/style.css">
 
@@ -17,134 +17,126 @@
 
 <header class="headerLogo">
 
-    <img
-        src="img/logo-riken-energias.png"
-        alt="RIKEN Energías"
-        class="logoEmpresa"
-    >
+<img
+src="img/logo-riken-energias.png"
+class="logoEmpresa">
 
-    <div>
+<div>
 
-        <h1>Control de Inventario QR</h1>
+<h1>Control de Inventario QR</h1>
 
-        <p>Área de Energías</p>
+<p>Área de Energías</p>
 
-    </div>
+</div>
 
 </header>
 
 <div class="contenedor">
 
-<!---------------- DASHBOARD ---------------->
+<!--================ DASHBOARD =================-->
 
 <div class="dashboard">
 
-    <div class="dashboardCard">
+<div class="dashboardCard">
 
-        <h2 id="totalMateriales">0</h2>
+<h2 id="totalMateriales">0</h2>
 
-        <p>📦 Materiales registrados</p>
-
-    </div>
-
-    <div class="dashboardCard">
-
-        <h2 id="entradasHoy">0</h2>
-
-        <p>📥 Entradas hoy</p>
-
-    </div>
-
-    <div class="dashboardCard">
-
-        <h2 id="salidasHoy">0</h2>
-
-        <p>📤 Salidas hoy</p>
-
-    </div>
-
-    <div class="dashboardCard alerta">
-
-        <h2 id="stockBajo">0</h2>
-
-        <p>⚠ Materiales por reponer</p>
-
-    </div>
+<p>📦 Materiales</p>
 
 </div>
 
-<!------------- MATERIALES POR REPONER ------------->
+<div class="dashboardCard">
 
+<h2 id="entradasHoy">0</h2>
+
+<p>📥 Entradas</p>
+
+</div>
+
+<div class="dashboardCard">
+
+<h2 id="salidasHoy">0</h2>
+
+<p>📤 Salidas</p>
+
+</div>
+
+<div class="dashboardCard alerta">
+
+<h2 id="stockBajo">0</h2>
+
+<p>⚠ Stock Bajo</p>
+
+</div>
+
+</div>
+
+<!--================ BOTONES =================-->
+
+<div class="botonesAcciones">
+
+<button id="nuevoRack">
+
+📁 Nuevo Rack
+
+</button>
+
+<button id="verHistorial">
+
+📋 Historial
+
+</button>
+
+<button id="excelInventario">
+
+📊 Inventario
+
+</button>
+
+<button id="excelMovimientos">
+
+📑 Historial Excel
+
+</button>
+
+</div>
+
+<!--================ BUSCADOR =================-->
+
+<input
+
+type="text"
+
+id="buscarRack"
+
+placeholder="🔍 Buscar Rack...">
+
+<br><br>
 <div class="card">
 
-    <h2>🔴 Materiales por reponer</h2>
+    <h2>⚠ Materiales por reponer</h2>
 
     <div id="listaStockBajo">
 
-        <p>No hay materiales por reponer.</p>
+        <p>Todo el inventario está correcto.</p>
 
     </div>
 
 </div>
 
 <br>
+<!--================ LISTA DE RACKS =================-->
 
-<input
-type="text"
-id="buscar"
-placeholder="🔍 Buscar material...">
-
-<br><br>
-
-<!------------- BOTONES PRINCIPALES ------------->
-
-<div class="botonesAcciones">
-
-    <button id="nuevoMaterial">
-
-        ➕ Agregar material
-
-    </button>
-
-    <button id="verHistorial">
-
-        📋 Ver Historial
-
-    </button>
-
-    <button id="excelInventario">
-
-        📊 Exportar Inventario
-
-    </button>
-
-    <button id="excelMovimientos">
-
-        📑 Exportar Historial
-
-    </button>
+<div id="listaRacks"></div>
 
 </div>
-
-<!------------- LISTA DE MATERIALES ------------->
-
-<div id="listaMateriales"></div>
-
-</div>
-
-<!-- Librería Supabase -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<!-- Librería Excel -->
 
 <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 
-<!-- Configuración -->
-
 <script src="js/config.js"></script>
-
-<!-- Código principal -->
 
 <script src="js/app.js"></script>
 

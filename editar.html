@@ -3,86 +3,100 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Editar Material</title>
+<title>Editar Material</title>
 
-    <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body>
 
 <header>
-    <h1>✏️ Editar Material</h1>
+
+<h1>✏️ Editar Material</h1>
+
 </header>
 
 <div class="contenedor">
 
-    <div class="card">
+<div class="card">
 
-        <label>Nombre</label>
-        <input id="nombre" type="text">
+<label>Nombre</label>
+<input id="nombre" type="text">
 
-        <br><br>
+<br><br>
 
-        <label>Código</label>
-        <input id="codigo" type="text">
+<label>Código</label>
+<input id="codigo" type="text">
 
-        <br><br>
+<br><br>
 
-        <label>Cantidad</label>
-        <input id="cantidad" type="number">
+<label>Cantidad</label>
+<input id="cantidad" type="number">
 
-        <br><br>
+<br><br>
 
-        <label>Ubicación</label>
-        <input id="ubicacion" type="text">
+<label>Rack</label>
 
-        <br><br>
+<select id="rack">
 
-        <label>Descripción</label>
-        <textarea id="descripcion" rows="5"></textarea>
+<option value="">Cargando racks...</option>
 
-        <br><br>
+</select>
 
-        <label>Stock mínimo</label>
-        <input id="minimo" type="number">
+<br><br>
 
-        <br><br>
+<label>Descripción</label>
 
-        <label>Color</label>
+<textarea
+id="descripcion"
+rows="5"></textarea>
 
-        <select id="color">
+<br><br>
 
-            <option value="azul">🔵 Azul</option>
+<label>Stock mínimo</label>
+<input id="minimo" type="number">
 
-            <option value="verde">🟢 Verde</option>
+<br><br>
 
-            <option value="rojo">🔴 Rojo</option>
+<label>Color</label>
 
-            <option value="morado">🟣 Morado</option>
+<select id="color">
 
-            <option value="amarillo">🟡 Amarillo</option>
+<option value="azul">🔵 Azul</option>
 
-            <option value="gris">⚫ Gris</option>
+<option value="verde">🟢 Verde</option>
 
-        </select>
+<option value="rojo">🔴 Rojo</option>
 
-        <br><br>
+<option value="morado">🟣 Morado</option>
 
-        <button id="guardar">
-            Guardar Cambios
-        </button>
+<option value="amarillo">🟡 Amarillo</option>
 
-        <br><br>
+<option value="gris">⚫ Gris</option>
 
-        <button onclick="history.back()">
-            Cancelar
-        </button>
+</select>
 
-    </div>
+<br><br>
+
+<button id="guardar">
+
+Guardar Cambios
+
+</button>
+
+<br><br>
+
+<button onclick="history.back()">
+
+Cancelar
+
+</button>
+
+</div>
 
 </div>
 

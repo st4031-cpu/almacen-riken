@@ -1,16 +1,18 @@
+;//=========================
+// DASHBOARD + RACKS
+//=========================
+
 async function cargarDashboard() {
 
-    //=========================
+    //-------------------------
     // MATERIALES
-    //=========================
+    //-------------------------
 
     const { data: materiales, error } = await supabaseClient
 
         .from("materiales")
 
-        .select("*")
-
-        .order("id");
+        .select("*");
 
     if (error) {
 
@@ -21,184 +23,157 @@ async function cargarDashboard() {
     }
 
     //-------------------------
-    // TARJETA
+    // RACKS
+    //-------------------------
+
+    const { data: racks, error: errorRacks } = await supabaseClient
+
+        .from("racks")
+
+        .select("*")
+
+        .order("nombre");
+
+    if (errorRacks) {
+
+        console.error(errorRacks);
+
+        return;
+
+    }
+
+    //-------------------------
+    // DASHBOARD
     //-------------------------
 
     document.getElementById("totalMateriales").textContent =
         materiales.length;
 
-    //-------------------------
-    // STOCK BAJO
-    //-------------------------
+    const stockBajo = materiales.filter(m =>
 
-    const stockBajo = materiales.filter(material =>
-
-        Number(material.cantidad) <= Number(material.minimo)
+        Number(m.cantidad) <= Number(m.minimo)
 
     );
 
     document.getElementById("stockBajo").textContent =
         stockBajo.length;
-
     //-------------------------
-    // CAMBIAR COLOR TARJETA
-    //-------------------------
+// LISTA STOCK BAJO
+//-------------------------
 
-    const tarjeta = document.querySelector(".alerta");
+const listaStock = document.getElementById("listaStockBajo");
 
-    if (stockBajo.length > 0) {
+listaStock.innerHTML = "";
 
-        tarjeta.style.background = "#e74c3c";
+if (stockBajo.length === 0) {
 
-        tarjeta.style.color = "white";
+    listaStock.innerHTML = "<p>✅ Todo el inventario está correcto.</p>";
 
-    } else {
+} else {
 
-        tarjeta.style.background = "#2ecc71";
+    stockBajo.forEach(material => {
 
-        tarjeta.style.color = "white";
+    const rack = racks.find(r => r.id === material.rack_id);
 
-    }
+    listaStock.innerHTML += `
 
-    //-------------------------
-    // LISTA STOCK BAJO
-    //-------------------------
+    <div class="stockCard">
 
-    const listaStock =
-        document.getElementById("listaStockBajo");
+        <div class="stockTitulo">
 
-    listaStock.innerHTML = "";
-
-    if (stockBajo.length == 0) {
-
-        listaStock.innerHTML =
-
-        "<p>✅ Todo el inventario está correcto.</p>";
-
-    } else {
-
-        stockBajo.forEach(material => {
-
-            listaStock.innerHTML += `
-
-            <div class="card">
-
-                <h3 style="color:red;">
-
-                    ${material.nombre}
-
-                </h3>
-
-                <p>
-
-                    Existencias:
-
-                    <b>${material.cantidad}</b>
-
-                </p>
-
-                <p>
-
-                    Stock mínimo:
-
-                    <b>${material.minimo}</b>
-
-                </p>
-
-            </div>
-
-            <br>
-
-            `;
-
-        });
-
-    }
-
-    //-------------------------
-    // LISTA MATERIALES
-    //-------------------------
-
-    const lista =
-        document.getElementById("listaMateriales");
-
-    lista.innerHTML = "";
-
-    materiales.forEach(material => {
-
-        let color = "#1565c0";
-
-        switch(material.color){
-
-            case "verde":
-                color="#27ae60";
-                break;
-
-            case "rojo":
-                color="#e74c3c";
-                break;
-
-            case "morado":
-                color="#8e44ad";
-                break;
-
-            case "amarillo":
-                color="#f1c40f";
-                break;
-
-            case "gris":
-                color="#7f8c8d";
-                break;
-
-        }
-
-        lista.innerHTML += `
-
-        <div class="card"
-
-        style="border-left:12px solid ${color};">
-
-            <h2 style="color:${color};">
-
-                ${material.nombre}
-
-            </h2>
-
-            <p>
-
-                <b>Código:</b>
-
-                ${material.codigo}
-
-            </p>
-
-            <p>
-
-                <b>Existencias:</b>
-
-                ${material.cantidad}
-
-            </p>
-
-            <p>
-
-                <b>Ubicación:</b>
-
-                ${material.ubicacion}
-
-            </p>
-
-            <button
-
-            onclick="location.href='material.html?id=${material.id}'">
-
-                Ver Material
-
-            </button>
+            ${material.nombre}
 
         </div>
 
-        `;
+        <div class="stockInfo">
+
+            📁 <b>Rack:</b> ${rack ? rack.nombre : "Sin rack"}
+
+            <br>
+
+            📦 <b>Existencias:</b> ${material.cantidad}
+
+            <br>
+
+            ⚠ <b>Stock mínimo:</b> ${material.minimo}
+
+        </div>
+
+        <button
+            class="btnVerMaterial"
+            onclick="location.href='material.html?id=${material.id}'">
+
+            👁 Ver material
+
+        </button>
+
+    </div>
+
+    `;
+
+});
+}
+
+    //-------------------------
+    // LISTA RACKS
+    //-------------------------
+
+    const lista = document.getElementById("listaRacks");
+
+    lista.innerHTML = "";
+
+    racks.forEach(rack => {
+
+        const total = materiales.filter(m =>
+
+            Number(m.rack_id) === rack.id
+
+        ).length;
+
+lista.innerHTML += `
+
+<div class="card">
+
+    <h2>
+
+        📁 ${rack.nombre}
+
+    </h2>
+
+    <p>
+
+        ${total} materiales
+
+    </p>
+
+    <button
+    onclick="location.href='rack.html?id=${rack.id}'">
+
+        Abrir Rack
+
+    </button>
+
+    <br><br>
+
+    <button
+    onclick="editarRack(${rack.id}, '${rack.nombre.replace(/'/g,"\\'")}')">
+
+        ✏️ Editar
+
+    </button>
+
+    <button
+    onclick="eliminarRack(${rack.id})">
+
+        🗑️ Eliminar
+
+    </button>
+
+</div>
+
+<br>
+
+`;
 
     });
 
@@ -265,31 +240,34 @@ async function cargarMovimientosHoy() {
 
 
 
+
 //=========================
-// BUSCADOR
+// BUSCAR RACK
 //=========================
 
-document.getElementById("buscar")
+document.getElementById("buscarRack")
 
-.addEventListener("keyup",()=>{
+.addEventListener("keyup", () => {
 
-    const texto =
-        document.getElementById("buscar")
+    const texto = document
+
+        .getElementById("buscarRack")
+
         .value
+
         .toLowerCase();
 
-    const tarjetas =
-        document.querySelectorAll("#listaMateriales .card");
+    const tarjetas = document.querySelectorAll("#listaRacks .card");
 
-    tarjetas.forEach(card=>{
+    tarjetas.forEach(card => {
 
-        if(card.innerText.toLowerCase().includes(texto)){
+        if (card.innerText.toLowerCase().includes(texto)) {
 
-            card.style.display="block";
+            card.style.display = "block";
 
-        }else{
+        } else {
 
-            card.style.display="none";
+            card.style.display = "none";
 
         }
 
@@ -318,14 +296,50 @@ document.getElementById("verHistorial").onclick = () => {
 cargarDashboard();
 
 cargarMovimientosHoy();
+//=========================
+// ACTUALIZAR DASHBOARD
+//=========================
+
+setInterval(() => {
+
+    cargarDashboard();
+
+}, 5000);
 //=====================
 // BOTONES PRINCIPALES
 //=====================
 
-// Agregar material
-document.getElementById("nuevoMaterial").onclick = () => {
+//=========================
+// NUEVO RACK
+//=========================
 
-    location.href = "nuevo.html";
+document.getElementById("nuevoRack").onclick = async () => {
+
+    const nombre = prompt("Nombre del nuevo Rack");
+
+    if (!nombre) return;
+
+    const { error } = await supabaseClient
+
+        .from("racks")
+
+        .insert({
+
+            nombre: nombre.trim()
+
+        });
+
+    if (error) {
+
+        console.error(error);
+
+        alert("No se pudo crear el rack.");
+
+        return;
+
+    }
+
+    cargarDashboard();
 
 };
 
@@ -610,3 +624,93 @@ document.getElementById("excelMovimientos").onclick = async () => {
     );
 
 };
+//=========================
+// EDITAR RACK
+//=========================
+
+async function editarRack(id, nombreActual) {
+
+    const nombre = prompt("Nuevo nombre del Rack", nombreActual);
+
+    if (!nombre) return;
+
+    const { error } = await supabaseClient
+
+        .from("racks")
+
+        .update({
+
+            nombre: nombre.trim()
+
+        })
+
+        .eq("id", id);
+
+    if (error) {
+
+        console.error(error);
+
+        alert("No se pudo actualizar el rack.");
+
+        return;
+
+    }
+
+    cargarDashboard();
+
+}
+
+//=========================
+// ELIMINAR RACK
+//=========================
+
+async function eliminarRack(id) {
+
+    if (!confirm("¿Eliminar este rack?")) return;
+
+    // Verificar si tiene materiales
+    const { data: materiales, error: errorMateriales } = await supabaseClient
+
+        .from("materiales")
+
+        .select("id")
+
+        .eq("rack_id", id);
+
+    if (errorMateriales) {
+
+        console.error(errorMateriales);
+
+        return;
+
+    }
+
+    if (materiales.length > 0) {
+
+        alert("Este rack todavía contiene materiales.");
+
+        return;
+
+    }
+
+    const { error } = await supabaseClient
+
+        .from("racks")
+
+        .delete()
+
+        .eq("id", id);
+
+    if (error) {
+
+        console.error(error);
+
+        alert("No se pudo eliminar el rack.");
+
+        return;
+
+    }
+
+    cargarDashboard();
+
+}
