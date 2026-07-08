@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Materiales por reponer</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<header class="headerLogo">
+
+<img
+src="img/logo-riken-energias.png"
+class="logoEmpresa">
+
+<div>
+
+<h1>Materiales por reponer</h1>
+
+<p>Área de Energías</p>
+
+</div>
+
+</header>
+
+<div class="contenedor">
+
+<div class="dashboard">
+
+<div class="dashboardCard alerta">
+
+<h2 id="totalReponer">0</h2>
+
+<p>⚠ Materiales por reponer</p>
+
+</div>
+
+</div>
+
+<input
+type="text"
+id="buscarReponer"
+placeholder="🔍 Buscar material...">
+
+<br><br>
+
+<div id="listaReponer"></div>
+
+<br>
+
+<button class="btnGuardar" onclick="location.href='panel.html'">
+
+🏠 Volver al inicio
+
+</button>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/config.js"></script>
+
+<script src="js/materiales_reponer.js"></script>
+
+</body>
+
+</html>

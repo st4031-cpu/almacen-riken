@@ -745,3 +745,12 @@ function obtenerColor(color){
     }
 
 }
+//=========================
+// ABRIR MATERIALES POR REPONER
+//=========================
+
+document.getElementById("abrirReponer").onclick = () => {
+
+    location.href = "materiales_reponer.html";
+
+};
