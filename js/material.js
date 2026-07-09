@@ -40,6 +40,8 @@ async function cargarMaterial() {
     document.getElementById("cantidad").textContent = data.cantidad;
     document.getElementById("cantidadNueva").textContent = data.cantidad;
     document.getElementById("ubicacion").textContent = data.ubicacion;
+    document.getElementById("categoria").textContent =
+    obtenerCategoria(data.color);
     document.getElementById("descripcion").textContent = data.descripcion;
     document.getElementById("minimo").textContent = data.minimo;
 
@@ -375,5 +377,51 @@ else if (modoOperador === "operador") {
 else {
 
     location.href = "login.html";
+
+}
+function obtenerCategoria(color){
+
+    switch(color){
+
+        case "azul":
+            return "⚡ Eléctrico";
+
+        case "morado":
+            return "🤖 Automatización";
+
+        case "verde":
+            return "💨 Neumática";
+
+        case "naranja":
+            return "🚰 Hidráulica / Tubería";
+
+        case "cafe":
+            return "🔧 Mecánico";
+
+        case "amarillo":
+            return "🦺 Seguridad";
+
+        case "gris":
+            return "📦 Consumibles";
+
+        case "rojo":
+            return "🚨 Material Crítico";
+
+        case "turquesa":
+            return "🌐 Redes / Comunicaciones";
+
+        case "rosa":
+            return "📏 Instrumentación";
+
+        case "blanco":
+            return "📄 Documentación";
+
+        case "negro":
+            return "🛠 Herramientas";
+
+        default:
+            return "Sin categoría";
+
+    }
 
 }

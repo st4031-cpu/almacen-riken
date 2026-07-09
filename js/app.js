@@ -58,7 +58,7 @@ async function cargarDashboard() {
     document.getElementById("stockBajo").textContent =
         stockBajo.length;
 
-        
+
     //-------------------------
     // LISTA RACKS
     //-------------------------
@@ -667,22 +667,40 @@ function obtenerColor(color){
     switch(color){
 
         case "azul":
-            return "#1565c0";
-
-        case "verde":
-            return "#2ecc71";
-
-        case "rojo":
-            return "#e74c3c";
-
-        case "amarillo":
-            return "#f1c40f";
+            return "#1565c0";   // Eléctrico
 
         case "morado":
-            return "#8e44ad";
+            return "#8e44ad";   // Automatización
+
+        case "verde":
+            return "#2ecc71";   // Neumática
+
+        case "naranja":
+            return "#e67e22";   // Hidráulica / Tubería
+
+        case "cafe":
+            return "#8B4513";   // Mecánico
+
+        case "amarillo":
+            return "#f1c40f";   // Seguridad
 
         case "gris":
-            return "#7f8c8d";
+            return "#7f8c8d";   // Consumibles
+
+        case "rojo":
+            return "#e74c3c";   // Material crítico
+
+        case "turquesa":
+            return "#1abc9c";   // Redes
+
+        case "rosa":
+            return "#ff69b4";   // Instrumentación
+
+        case "blanco":
+            return "#ecf0f1";   // Documentación
+
+        case "negro":
+            return "#2c3e50";   // Herramientas
 
         default:
             return "#1565c0";

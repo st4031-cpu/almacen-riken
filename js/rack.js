@@ -36,41 +36,9 @@ async function cargarRack() {
 
     materiales.forEach(material => {
 
-        let color = "#1565c0";
+        const color = obtenerColor(material.color);
 
-        switch(material.color){
-
-            case "verde":
-
-                color="#27ae60";
-
-                break;
-
-            case "rojo":
-
-                color="#e74c3c";
-
-                break;
-
-            case "morado":
-
-                color="#8e44ad";
-
-                break;
-
-            case "amarillo":
-
-                color="#f1c40f";
-
-                break;
-
-            case "gris":
-
-                color="#7f8c8d";
-
-                break;
-
-        }
+        const categoria = obtenerCategoria(material.color);
 
         lista.innerHTML += `
 
@@ -80,9 +48,24 @@ async function cargarRack() {
 
             <h2 style="color:${color};">
 
-                ${material.nombre}
+                📦 ${material.nombre}
 
             </h2>
+
+            <p style="
+                display:inline-block;
+                background:${color};
+                color:white;
+                padding:6px 12px;
+                border-radius:20px;
+                font-size:14px;
+                font-weight:bold;
+                margin-bottom:12px;
+            ">
+
+                ${categoria}
+
+            </p>
 
             <p>
 
@@ -104,7 +87,7 @@ async function cargarRack() {
 
             onclick="location.href='material.html?id=${material.id}'">
 
-                Ver Material
+                👁 Ver Material
 
             </button>
 
@@ -113,6 +96,108 @@ async function cargarRack() {
         `;
 
     });
+
+}
+
+//=========================
+// COLORES
+//=========================
+
+function obtenerColor(color){
+
+    switch(color){
+
+        case "azul":
+            return "#1565c0";
+
+        case "morado":
+            return "#8e44ad";
+
+        case "verde":
+            return "#2ecc71";
+
+        case "naranja":
+            return "#e67e22";
+
+        case "cafe":
+            return "#8B4513";
+
+        case "amarillo":
+            return "#f1c40f";
+
+        case "gris":
+            return "#7f8c8d";
+
+        case "rojo":
+            return "#e74c3c";
+
+        case "turquesa":
+            return "#1abc9c";
+
+        case "rosa":
+            return "#ff69b4";
+
+        case "blanco":
+            return "#bdc3c7";
+
+        case "negro":
+            return "#2c3e50";
+
+        default:
+            return "#1565c0";
+
+    }
+
+}
+
+//=========================
+// CATEGORÍAS
+//=========================
+
+function obtenerCategoria(color){
+
+    switch(color){
+
+        case "azul":
+            return "⚡ Eléctrico";
+
+        case "morado":
+            return "🤖 Automatización";
+
+        case "verde":
+            return "💨 Neumática";
+
+        case "naranja":
+            return "🚰 Hidráulica";
+
+        case "cafe":
+            return "🔧 Mecánico";
+
+        case "amarillo":
+            return "🦺 Seguridad";
+
+        case "gris":
+            return "📦 Consumibles";
+
+        case "rojo":
+            return "🚨 Crítico";
+
+        case "turquesa":
+            return "🌐 Redes";
+
+        case "rosa":
+            return "📏 Instrumentación";
+
+        case "blanco":
+            return "📄 Documentación";
+
+        case "negro":
+            return "🛠 Herramientas";
+
+        default:
+            return "📦 General";
+
+    }
 
 }
 
