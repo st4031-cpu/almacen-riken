@@ -263,59 +263,15 @@ document.getElementById("editar").onclick = () => {
 // GENERAR QR
 //=====================
 
-const modalQR = document.getElementById("modalQR");
-
-const contenedorQR = document.getElementById("contenedorQR");
-
 document.getElementById("generarQR").onclick = () => {
 
-    // Limpiar contenido anterior
-    contenedorQR.innerHTML = "";
+    window.open(
 
-    // URL pública del material
+        "etiqueta.html?id="+id,
 
-   const urlQR = "https://st4031-cpu.github.io/almacen-riken/material.html?id=" + id + "&modo=operador";
+        "_blank"
 
-    // Crear contenedor
-    const divQR = document.createElement("div");
-
-    divQR.id = "codigoQR";
-
-    contenedorQR.appendChild(divQR);
-
-    // Nombre del material
-    const titulo = document.createElement("h3");
-
-    titulo.textContent = nombreMaterial;
-
-    titulo.style.marginTop = "20px";
-
-    titulo.style.textAlign = "center";
-
-    contenedorQR.appendChild(titulo);
-
-    // Generar QR
-    new QRCode(divQR, {
-
-        text: urlQR,
-
-        width: 250,
-
-        height: 250
-
-    });
-
-    modalQR.style.display = "flex";
-
-};
-
-//=====================
-// CERRAR QR
-//=====================
-
-document.getElementById("cerrarQR").onclick = () => {
-
-    modalQR.style.display = "none";
+    );
 
 };
 
